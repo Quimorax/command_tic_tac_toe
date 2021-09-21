@@ -5,10 +5,10 @@ It's command version of tic-tac-toe with pretty colored print. The table, player
 Initially user have table 
 with coordinates from one to desk size _(include)_. And user can enter coordinate, 
 where he wants go. After selecting a coordinate, a cross or zero takes its place</br>
-Example:
+**Example**:
 
    Initially: </br>![](exp1.png)</br>
-   Some time later..</br>
+   _Some time later.._</br>
       ![](example2.png)
 
 ### Command line parameters
