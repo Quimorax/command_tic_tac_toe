@@ -3,11 +3,13 @@
 __version__ = '1.0.0'
 
 import argparse
-import utilities
+from random import choice
 from typing import Optional, Union
+
 from colorama import init
 from termcolor import colored
-from random import choice
+
+import utilities
 
 init()  # for Windows support
 

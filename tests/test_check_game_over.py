@@ -1,8 +1,8 @@
-import main
-from utilities.matrix_utilities import make_solid_matrix
-from utilities.check_utilities import check_game_over
-
 import pytest
+
+import main
+from utilities.check_utilities import check_game_over
+from utilities.matrix_utilities import make_solid_matrix
 
 
 def test_rows():

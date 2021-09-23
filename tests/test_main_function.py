@@ -1,7 +1,7 @@
+import pytest
+
 import main
 from utilities import matrix_utilities
-
-import pytest
 
 original_make_matrix = matrix_utilities.make_matrix
 

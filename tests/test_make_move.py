@@ -1,7 +1,7 @@
+import pytest
+
 import main
 from utilities.matrix_utilities import make_matrix
-
-import pytest
 
 
 def test_last_coordinate():

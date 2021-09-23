@@ -1,4 +1,5 @@
 from typing import Union, Callable, Any
+
 from termcolor import colored
 
 
