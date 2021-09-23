@@ -7,9 +7,9 @@ with coordinates from one to desk size _(include)_. And user can enter coordinat
 where he wants go. After selecting a coordinate, a cross or zero takes its place</br>
 **Example**:
 
-   Initially: </br>![](exp1.png)</br>
+   Initially: </br>![](images/exp1.png)</br>
    _Some time later.._</br>
-      ![](example2.png)
+      ![](images/example2.png)
 
 ### Command line parameters
 Since the project is on the command line, it has some command line parameters:</br>
