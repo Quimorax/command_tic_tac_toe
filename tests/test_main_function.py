@@ -4,6 +4,8 @@ import main
 import utilities
 
 original_make_matrix = utilities.make_matrix
+original_make_move = main.make_move
+main.set_make_move(lambda matrix, player: None)
 
 
 class TestDiagonals:
@@ -14,7 +16,7 @@ class TestDiagonals:
                 matrix[index][index] = player_designation
             utilities.set_make_matrix(lambda desk_size: matrix)
             message = f'Player {main.colored(player, main.players_colors[player])} win'
-            assert main.main(player, test=True) == message
+            assert main.main(player) == message
 
     def test_right_diagonal_wins(self):
         for player, player_designation in main.players.items():
@@ -23,7 +25,7 @@ class TestDiagonals:
                 matrix[main.desk_size - index - 1][index] = player_designation
             utilities.set_make_matrix(lambda desk_size: matrix)
             message = f'Player {main.colored(player, main.players_colors[player])} win'
-            assert main.main(player, test=True) == message
+            assert main.main(player) == message
 
     def teardown(self):
         utilities.set_make_matrix(original_make_matrix)
@@ -34,9 +36,9 @@ def test_rows_wins():
         for row_index in range(main.desk_size):
             matrix = utilities.make_solid_matrix(main.desk_size)
             matrix[row_index] = [player_designation] * main.desk_size
-            utilities.matrix_utilities.set_make_matrix(lambda desk_size: matrix)
+            utilities.set_make_matrix(lambda desk_size: matrix)
             message = f'Player {main.colored(player, main.players_colors[player])} win'
-            assert main.main(player, test=True) == message
+            assert main.main(player) == message
 
 
 def test_columns_wins():
@@ -47,7 +49,7 @@ def test_columns_wins():
                 matrix[inner_index][index] = player_designation
             utilities.set_make_matrix(lambda desk_size: matrix)
             message = f'Player {main.colored(player, main.players_colors[player])} win'
-            assert main.main(player, test=True) == message
+            assert main.main(player) == message
 
 
 def test_with_wrong_player():
@@ -55,11 +57,12 @@ def test_with_wrong_player():
         utilities.set_make_matrix(
             lambda desk_size: utilities.make_solid_matrix(main.desk_size, placeholder='X')
         )
-        main.main('one')  # if not raise, return 'Draw' because all matrix it's crosses
+        main.main('one')
 
 
 def teardown():
     utilities.set_make_matrix(original_make_matrix)
+    main.set_make_move(original_make_move)
 
 
 if __name__ == '__main__':

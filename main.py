@@ -4,7 +4,7 @@ __version__ = '1.0.0'
 
 import argparse
 from random import choice
-from typing import Optional
+from typing import Optional, Callable
 
 from colorama import init
 from termcolor import colored
@@ -37,6 +37,9 @@ def make_move(matrix: list[list], player: str) -> None:
         matrix: matrix with coordinates and optionally players.
         player: means "cross" or "zero".
 
+    Notes:
+        Function has an infinite cycle that ends only after valid input.
+
     """
     while True:
         try:
@@ -50,17 +53,20 @@ def make_move(matrix: list[list], player: str) -> None:
             break
 
 
-def main(player_making_first_move: Optional[str], *, test: bool = False) -> str:
+def set_make_move(function: Callable) -> None:
+    """Set "make_move" for easy testing in unittests."""
+    global make_move
+    make_move = function
+
+
+def main(player_making_first_move: Optional[str]) -> str:
     """Main function that runs the project.
 
     Args:
-        player_making_first_move: Only can be "cross" or "zero". If player_making_first_move is None,
-            chosen random in function "create_parser".
-        test: Need for testing in unittests because the output will not be taken, because for the comfort of
-            testing (so as not to enter many values), the matrix creation function will be changed.
+        player_making_first_move: Player who making first move. Only can be "cross" or "zero".
 
     Returns:
-        Colored 'Draw' if value (check_game_over result) return 'Draw' or message about who won.
+        Return colored 'Draw' or message about who won.
 
     Raises:
         NameError: if player_making_first_move not "cross" or "zero".
@@ -72,18 +78,16 @@ def main(player_making_first_move: Optional[str], *, test: bool = False) -> str:
     utilities.pretty_matrix_print(matrix)
     player = player_making_first_move
     while True:
+        print(f'Player {colored(player, players_colors[player])} makes a move')
+        make_move(matrix, player)
+        utilities.pretty_matrix_print(matrix)
         value = utilities.check_game_over(matrix, players)
-        if test and value == utilities.results_according_rules.WIN:
-            return f'Player {colored(player, players_colors[player])} win'
-        if value == utilities.results_according_rules.CONTINUE:
-            print(f'Player {colored(player, players_colors[player])} makes a move')
-            make_move(matrix, player)
-            utilities.pretty_matrix_print(matrix)
-            if utilities.check_game_over(matrix, players) == utilities.results_according_rules.WIN:
-                return f'Player {colored(player, players_colors[player])} win'
-        else:  # if draw
+        if value == utilities.results_according_rules.DRAW:
             return colored(value, 'yellow')
-        player = get_next_player(player)
+        elif value == utilities.results_according_rules.WIN:
+            return f'Player {colored(player, players_colors[player])} win'
+        else:  # if value is "Continue..."
+            player = get_next_player(player)
 
 
 def get_next_player(available_player: str) -> str:

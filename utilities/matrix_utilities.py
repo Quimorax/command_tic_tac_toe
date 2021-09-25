@@ -12,7 +12,7 @@ def pretty_matrix_print(matrix: list[list], bracket_color='white', separator_col
         print(f"{left_bracket}{items}{right_bracket}")
 
 
-def make_matrix(desk_size) -> list[list[int]]:
+def make_matrix(desk_size: int) -> list[list[int]]:
     """Make matrix (size: desk_size ** 2) with coordinates 1 — desk_size ** 2 (including)."""
     matrix = []
     digits_iterator = iter(range(1, desk_size ** 2 + 1))
@@ -21,8 +21,8 @@ def make_matrix(desk_size) -> list[list[int]]:
     return matrix
 
 
-def make_solid_matrix(desk_size, *, placeholder=...) -> list[list[Any]]:
-    """Make a solid matrix, which used in unittests."""
+def make_solid_matrix(desk_size: int, *, placeholder=...) -> list[list[Any]]:
+    """Make a solid matrix"""
     return [[placeholder for _ in range(desk_size)] for _ in range(desk_size)]
 
 
