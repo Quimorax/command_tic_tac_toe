@@ -30,11 +30,6 @@ def create_parser() -> argparse.ArgumentParser:
     return parser
 
 
-parser = create_parser()
-namespace = parser.parse_args()
-desk_size = namespace.desk_size
-
-
 def make_move(matrix: list[list[Union[str, int]]], player) -> None:
     """Changes the index of the matrix to the entered coordinate (if no exceptions).
 
@@ -46,7 +41,7 @@ def make_move(matrix: list[list[Union[str, int]]], player) -> None:
     while True:
         try:
             step_coordinate = int(input('Enter coordinate: '))
-            utilities.check_utilities.check_input(step_coordinate, matrix)
+            utilities.check_input(step_coordinate, matrix)
         except ValueError as error:
             print(f'{error}, enter one more time..')
         else:
@@ -74,18 +69,18 @@ def main(player_making_first_move: Optional[str], *, test=False) -> str:
     if player_making_first_move not in players:
         raise NameError('Player only can be "cross" or "zero"')
     matrix = utilities.matrix_utilities.make_matrix(desk_size)
-    utilities.matrix_utilities.pretty_matrix_print(matrix)
+    utilities.pretty_matrix_print(matrix)
     player = player_making_first_move
     while True:
-        value = utilities.check_utilities.check_game_over(matrix, players)
+        value = utilities.check_game_over(matrix, players)
         if not value:
             print(f'Player {colored(player, players_colors[player])} makes a move')
             make_move(matrix, player)
-            utilities.matrix_utilities.pretty_matrix_print(matrix)
+            utilities.pretty_matrix_print(matrix)
             player = get_next_player(player)
         elif value == 'Draw':
             return colored(value, 'yellow')
-        else:  # if value
+        else:
             if not test:
                 player = get_next_player(player)
             return f'Player {colored(player, players_colors[player])} win'
@@ -94,6 +89,10 @@ def main(player_making_first_move: Optional[str], *, test=False) -> str:
 def get_next_player(available_player: str) -> str:
     return 'cross' if available_player == 'zero' else 'zero'
 
+
+parser = create_parser()
+namespace = parser.parse_args()
+desk_size = namespace.desk_size
 
 if __name__ == '__main__':
     print(main(namespace.player))

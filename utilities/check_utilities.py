@@ -27,16 +27,16 @@ def check_game_over(matrix: list[list[Union[str, int]]], players: dict) -> Union
     return False
 
 
-def check_input(step_coordinate: int, matrix: list[list[Union[str, int]]]):
+def check_input(step_coordinate: int, matrix: list[list[Union[str, int]]]) -> None:
     """Check input coordinate.
 
     Raises:
         ValueError: if coordinate too small, too large or occupied
 
     """
-    if not 1 <= step_coordinate:  # 1: min available coordinate
+    if step_coordinate < 1:  # 1: min available coordinate
         raise ValueError('Too small coordinate')
-    if not step_coordinate <= len(matrix) ** 2:  # desk_size ** 2: max available coordinate
+    if step_coordinate > len(matrix) ** 2:  # desk_size ** 2: max available coordinate
         raise ValueError('Too large coordinate')
     if not [step_coordinate for list_ in matrix if step_coordinate in list_]:
         raise ValueError('Coordinate is already occupied')
