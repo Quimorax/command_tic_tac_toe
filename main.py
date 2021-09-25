@@ -4,7 +4,7 @@ __version__ = '1.0.0'
 
 import argparse
 from random import choice
-from typing import Optional, Callable
+from typing import Optional
 
 from colorama import init
 from termcolor import colored
@@ -53,12 +53,6 @@ def make_move(matrix: list[list], player: str) -> None:
             break
 
 
-def set_make_move(function: Callable) -> None:
-    """Set "make_move" for easy testing in unittests."""
-    global make_move
-    make_move = function
-
-
 def main(player_making_first_move: Optional[str]) -> str:
     """Main function that runs the project.
 
@@ -74,7 +68,7 @@ def main(player_making_first_move: Optional[str]) -> str:
     """
     if player_making_first_move not in players:
         raise NameError('Player only can be "cross" or "zero"')
-    matrix = utilities.matrix_utilities.make_matrix(desk_size)
+    matrix = utilities.make_matrix(desk_size)
     utilities.pretty_matrix_print(matrix)
     player = player_making_first_move
     while True:
