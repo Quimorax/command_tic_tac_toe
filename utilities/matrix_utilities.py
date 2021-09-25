@@ -8,7 +8,7 @@ def pretty_matrix_print(matrix: list[list], bracket_color='white', separator_col
     for list_of_items in matrix:
         left_bracket, right_bracket = colored('[', bracket_color), colored(']', bracket_color)
         separator = colored(", ", separator_color)
-        items = separator.join(str(elem) for elem in list_of_items)
+        items = separator.join(str(item) for item in list_of_items)
         print(f"{left_bracket}{items}{right_bracket}")
 
 

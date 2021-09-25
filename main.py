@@ -30,7 +30,7 @@ def create_parser() -> argparse.ArgumentParser:
     return parser
 
 
-def make_move(matrix: list[list], player) -> None:
+def make_move(matrix: list[list], player: str) -> None:
     """Changes the index of the matrix to the entered coordinate (if no exceptions).
 
     Args:
@@ -43,14 +43,14 @@ def make_move(matrix: list[list], player) -> None:
             step_coordinate = int(input('Enter coordinate: '))
             utilities.check_input(step_coordinate, matrix)
         except ValueError as error:
-            print(f'{error}, enter one more time..')
+            print(f'{error}, enter one more time...')
         else:
             value = [elem for elem in matrix if step_coordinate in elem][0]
             matrix[matrix.index(value)][value.index(step_coordinate)] = players[player]
             break
 
 
-def main(player_making_first_move: Optional[str], *, test=False) -> str:
+def main(player_making_first_move: Optional[str], *, test: bool = False) -> str:
     """Main function that runs the project.
 
     Args:
@@ -73,17 +73,17 @@ def main(player_making_first_move: Optional[str], *, test=False) -> str:
     player = player_making_first_move
     while True:
         value = utilities.check_game_over(matrix, players)
-        if not value:
+        if test and value == utilities.results_according_rules.WIN:
+            return f'Player {colored(player, players_colors[player])} win'
+        if value == utilities.results_according_rules.CONTINUE:
             print(f'Player {colored(player, players_colors[player])} makes a move')
             make_move(matrix, player)
             utilities.pretty_matrix_print(matrix)
-            player = get_next_player(player)
-        elif value == 'Draw':
+            if utilities.check_game_over(matrix, players) == utilities.results_according_rules.WIN:
+                return f'Player {colored(player, players_colors[player])} win'
+        else:  # if draw
             return colored(value, 'yellow')
-        else:
-            if not test:
-                player = get_next_player(player)
-            return f'Player {colored(player, players_colors[player])} win'
+        player = get_next_player(player)
 
 
 def get_next_player(available_player: str) -> str:
