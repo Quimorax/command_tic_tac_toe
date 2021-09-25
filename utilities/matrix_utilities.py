@@ -1,9 +1,9 @@
-from typing import Union, Callable, Any
+from typing import Callable, Any
 
 from termcolor import colored
 
 
-def pretty_matrix_print(matrix: list[list[Union[str, int]]], bracket_color='white', separator_color='white') -> None:
+def pretty_matrix_print(matrix: list[list], bracket_color='white', separator_color='white') -> None:
     """Pretty matrix print with color instead of GUI."""
     for list_of_items in matrix:
         left_bracket, right_bracket = colored('[', bracket_color), colored(']', bracket_color)

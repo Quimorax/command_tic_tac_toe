@@ -1,7 +1,7 @@
 from typing import Union
 
 
-def check_game_over(matrix: list[list[Union[str, int]]], players: dict) -> Union[str, bool]:
+def check_game_over(matrix: list[list], players: dict) -> Union[str, bool]:
     """Check game over conditions.
 
     Returns:

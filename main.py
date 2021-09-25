@@ -4,7 +4,7 @@ __version__ = '1.0.0'
 
 import argparse
 from random import choice
-from typing import Optional, Union
+from typing import Optional
 
 from colorama import init
 from termcolor import colored
@@ -30,7 +30,7 @@ def create_parser() -> argparse.ArgumentParser:
     return parser
 
 
-def make_move(matrix: list[list[Union[str, int]]], player) -> None:
+def make_move(matrix: list[list], player) -> None:
     """Changes the index of the matrix to the entered coordinate (if no exceptions).
 
     Args:
