@@ -2,10 +2,10 @@ from collections import namedtuple
 
 
 _Results = namedtuple('Results', ['CONTINUE', 'DRAW', 'WIN'])
-results_according_rules = _Results('Continue...', 'Draw', 'Win')
+results_according_conditions = _Results('Continue...', 'Draw', 'Win')
 
 
-def check_game_over(matrix: list[list], players: dict) -> str:
+def check_game_conditions(matrix: list[list], players: dict) -> str:
     """Check game over conditions.
 
     Returns:
@@ -25,10 +25,10 @@ def check_game_over(matrix: list[list], players: dict) -> str:
     for segments in matrix_segments.values():
         for segment in segments:
             if segment in win_variants:
-                return results_according_rules.WIN
+                return results_according_conditions.WIN
     if all(type(elem) == str for list_ in matrix for elem in list_):
-        return results_according_rules.DRAW
-    return results_according_rules.CONTINUE
+        return results_according_conditions.DRAW
+    return results_according_conditions.CONTINUE
 
 
 def check_input(step_coordinate: int, matrix: list[list]) -> None:

@@ -1,8 +1,7 @@
 import pytest
 
 import main
-from utilities import check_input
-from utilities import make_matrix
+from utilities import check_input, make_matrix
 
 matrix = make_matrix(main.desk_size)
 

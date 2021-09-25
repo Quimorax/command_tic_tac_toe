@@ -81,10 +81,10 @@ def main(player_making_first_move: Optional[str]) -> str:
         print(f'Player {colored(player, players_colors[player])} makes a move')
         make_move(matrix, player)
         utilities.pretty_matrix_print(matrix)
-        value = utilities.check_game_over(matrix, players)
-        if value == utilities.results_according_rules.DRAW:
+        value = utilities.check_game_conditions(matrix, players)
+        if value == utilities.results_according_conditions.DRAW:
             return colored(value, 'yellow')
-        elif value == utilities.results_according_rules.WIN:
+        elif value == utilities.results_according_conditions.WIN:
             return f'Player {colored(player, players_colors[player])} win'
         else:  # if value is "Continue..."
             player = get_next_player(player)
