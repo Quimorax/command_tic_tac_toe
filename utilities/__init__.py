@@ -1,2 +1,2 @@
-from utilities import matrix_utilities
-from utilities import check_utilities
+from utilities.matrix_utilities import *
+from utilities.check_utilities import *
