@@ -6,7 +6,7 @@ results_according_conditions = _Results('Continue...', 'Draw', 'Win')
 
 
 def check_game_conditions(matrix: list[list], players: dict) -> str:
-    """Check game over conditions.
+    """Check game conditions.
 
     Returns:
         "Win" If the player has completely filled a row, diagonal or column.

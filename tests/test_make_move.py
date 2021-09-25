@@ -14,7 +14,7 @@ def test_last_coordinate():
 
 
 def test_third_coordinate():
-    third_step_coordinate = main.desk_size  # because matrix size desk_size ** 2
+    third_step_coordinate = main.desk_size  # because matrix size is desk_size ** 2
     for player in main.players:
         matrix = make_matrix(main.desk_size)
         main.input = lambda message: third_step_coordinate

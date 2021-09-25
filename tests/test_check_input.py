@@ -6,6 +6,10 @@ from utilities import check_input, make_matrix
 matrix = make_matrix(main.desk_size)
 
 
+def test_without_raise():
+    check_input(main.desk_size, matrix)
+
+
 def test_input_too_large_coordinate():
     with pytest.raises(ValueError) as error:
         check_input(main.desk_size ** 2 + 1, matrix)
@@ -19,8 +23,7 @@ def test_input_too_small_coordinate():
 
 
 def test_not_available_coordinate():
-    global matrix
-    matrix = matrix.copy()
+    matrix = make_matrix(main.desk_size)
     matrix[0][0] = main.players['cross']
     with pytest.raises(ValueError) as error:
         check_input(1, matrix)
