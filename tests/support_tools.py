@@ -1,4 +1,5 @@
 """Contain support tools for pytests."""
+
 from typing import Callable, Any
 
 import main
