@@ -1,8 +1,8 @@
 import pytest
 
 import main
-import tests.support_tools as support_tools
 import utilities
+from tests import support_tools
 
 original_make_matrix = utilities.make_matrix
 original_make_move = main.make_move
@@ -74,7 +74,7 @@ class TestColumns:
             message = f'Player {main.colored(player, main.players_colors[player])} win'
             assert main.main(player) == message
 
-    def test_second_row_win(self):
+    def test_second_column_win(self):
         for player, player_designation in main.players.items():
             matrix = [
                 [None, player_designation, None],
