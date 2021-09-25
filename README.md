@@ -18,8 +18,8 @@ Since the project is on the command line, it has some command line parameters:</
 (parameters in unix style)
 
 - `-h` or `--help`: return help message
-- `-ds` or `--desk-size`: configure desk size
-- `-p` or `--player`: identify player, who will go first
+- `-ds` or `--desk-size`: configure desk size _(default 3)_
+- `-p` or `--player`: identify player, who will go first _(default chose random)_
 
 ### Technical information
 
